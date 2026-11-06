@@ -1,0 +1,168 @@
+export const ADMIN_SECTIONS = {
+    overview: {
+        title: 'Overview',
+        description: 'A clear view of how DinkZone is performing today.',
+        action: 'Download summary',
+        stats: [
+            { label: 'Gross revenue', value: '₱184,260', trend: '+12.8%', note: 'vs. last month', icon: 'revenue' },
+            { label: 'Bookings', value: '1,284', trend: '+8.4%', note: 'vs. last month', icon: 'bookings' },
+            { label: 'Active players', value: '3,842', trend: '+16.2%', note: 'this month', icon: 'players' },
+            { label: 'Court occupancy', value: '76%', trend: '+4.6%', note: 'average this week', icon: 'occupancy' },
+        ],
+        revenue: [38, 55, 46, 72, 58, 84, 69, 92, 63, 76, 88, 100],
+        revenueLabels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        rows: [
+            { name: 'Miguel Santos', detail: 'Rally Point · Court 02', date: 'Today, 10:30 AM', amount: '₱650', status: 'Confirmed' },
+            { name: 'Alyssa Cruz', detail: 'Dink District · Court 01', date: 'Today, 11:00 AM', amount: '₱520', status: 'Pending' },
+            { name: 'Noah Reyes', detail: 'Rally Point · Court 04', date: 'Today, 12:30 PM', amount: '₱780', status: 'Confirmed' },
+            { name: 'Sofia Lim', detail: 'The Kitchen · Court 03', date: 'Today, 1:00 PM', amount: '₱650', status: 'Cancelled' },
+        ],
+    },
+    ownerView: {
+        title: 'Owner view',
+        description: 'Your venues at a glance, with the details that matter.',
+        action: 'Add a venue',
+        stats: [
+            { label: 'Your venues', value: '3', trend: '2 active', note: 'across Cebu City', icon: 'venues' },
+            { label: 'Courts online', value: '12', trend: '10 available', note: 'right now', icon: 'courts' },
+            { label: 'This month', value: '₱92,450', trend: '+9.2%', note: 'venue revenue', icon: 'revenue' },
+        ],
+        rows: [
+            { name: 'Rally Point Pickleball', detail: 'Banilad · 5 courts', date: 'Open until 10:00 PM', amount: '₱42,800', status: 'Open' },
+            { name: 'Dink District', detail: 'Lahug · 4 courts', date: 'Open until 11:00 PM', amount: '₱31,250', status: 'Open' },
+            { name: 'The Kitchen Cebu', detail: 'IT Park · 3 courts', date: 'Opens at 2:00 PM', amount: '₱18,400', status: 'Opening soon' },
+        ],
+    },
+    bookings: {
+        title: 'Bookings',
+        description: 'Review reservations and keep every court moving.',
+        action: 'Export bookings',
+        stats: [
+            { label: 'Today', value: '38', trend: '+6', note: 'compared to yesterday', icon: 'bookings' },
+            { label: 'Needs attention', value: '4', trend: '2 pending', note: '2 change requests', icon: 'attention' },
+            { label: 'Upcoming', value: '126', trend: 'Next 7 days', note: 'across all venues', icon: 'calendar' },
+        ],
+        rows: [
+            { name: 'Miguel Santos', detail: 'Rally Point · Court 02', date: 'Today, 10:30 AM', amount: '₱650', status: 'Confirmed' },
+            { name: 'Alyssa Cruz', detail: 'Dink District · Court 01', date: 'Today, 11:00 AM', amount: '₱520', status: 'Pending' },
+            { name: 'Noah Reyes', detail: 'Rally Point · Court 04', date: 'Today, 12:30 PM', amount: '₱780', status: 'Confirmed' },
+            { name: 'Sofia Lim', detail: 'The Kitchen · Court 03', date: 'Today, 1:00 PM', amount: '₱650', status: 'Cancelled' },
+            { name: 'Ethan Garcia', detail: 'Dink District · Court 02', date: 'Today, 2:00 PM', amount: '₱520', status: 'Pending' },
+            { name: 'Chloe Tan', detail: 'Rally Point · Court 01', date: 'Today, 3:30 PM', amount: '₱650', status: 'Confirmed' },
+        ],
+    },
+    calendar: {
+        title: 'Calendar',
+        description: 'See what is happening across your venues this week.',
+        action: 'Add a booking',
+        stats: [
+            { label: 'Today', value: '38', trend: 'bookings', note: 'across 12 courts', icon: 'bookings' },
+            { label: 'Court hours', value: '84%', trend: '+5.1%', note: 'scheduled today', icon: 'occupancy' },
+            { label: 'Open slots', value: '16', trend: 'available', note: 'for the next 24 hours', icon: 'calendar' },
+        ],
+        rows: [
+            { name: 'Court 01 · Rally Point', detail: 'Miguel Santos · Open play', date: '10:30 AM – 11:30 AM', amount: '₱650', status: 'Confirmed' },
+            { name: 'Court 02 · Dink District', detail: 'Alyssa Cruz · Doubles', date: '11:00 AM – 12:00 PM', amount: '₱520', status: 'Pending' },
+            { name: 'Court 04 · Rally Point', detail: 'Noah Reyes · Open play', date: '12:30 PM – 1:30 PM', amount: '₱780', status: 'Confirmed' },
+            { name: 'Court 03 · The Kitchen', detail: 'Sofia Lim · Doubles', date: '1:00 PM – 2:00 PM', amount: '₱650', status: 'Cancelled' },
+            { name: 'Court 02 · Dink District', detail: 'Ethan Garcia · Open play', date: '2:00 PM – 3:00 PM', amount: '₱520', status: 'Pending' },
+        ],
+    },
+    venuesCourts: {
+        title: 'Venues & courts',
+        description: 'Manage court availability, venue details, and operations.',
+        action: 'Add a court',
+        stats: [
+            { label: 'Total venues', value: '8', trend: '+1', note: 'added this month', icon: 'venues' },
+            { label: 'Active courts', value: '24', trend: '22 bookable', note: 'across all venues', icon: 'courts' },
+            { label: 'Average rating', value: '4.8', trend: '+0.2', note: 'from 316 reviews', icon: 'rating' },
+        ],
+        rows: [
+            { name: 'Rally Point Pickleball', detail: 'Banilad · 5 courts · Indoor', date: 'Today, 10:30 AM', amount: '₱42,800', status: 'Open' },
+            { name: 'Dink District', detail: 'Lahug · 4 courts · Outdoor', date: 'Today, 11:00 AM', amount: '₱31,250', status: 'Open' },
+            { name: 'The Kitchen Cebu', detail: 'IT Park · 3 courts · Indoor', date: 'Opens at 2:00 PM', amount: '₱18,400', status: 'Opening soon' },
+            { name: 'Baseline Social Club', detail: 'Mabolo · 4 courts · Indoor', date: 'Maintenance: Court 04', amount: '₱27,100', status: 'Maintenance' },
+        ],
+    },
+    tournaments: {
+        title: 'Tournaments',
+        description: 'Organize events and keep players excited to compete.',
+        action: 'Create tournament',
+        stats: [
+            { label: 'Upcoming events', value: '6', trend: '3 this month', note: 'registration open', icon: 'calendar' },
+            { label: 'Registered players', value: '184', trend: '+24', note: 'this week', icon: 'players' },
+            { label: 'Prize pool', value: '₱48,000', trend: 'across 4 events', note: 'with sponsors', icon: 'revenue' },
+        ],
+        rows: [
+            { name: 'Cebu City Dink Open', detail: 'Intermediate · Doubles', date: 'Nov 14–16, 2026', amount: '64 / 80 players', status: 'Registration open' },
+            { name: 'Sunday Social Ladder', detail: 'All levels · Singles', date: 'Nov 22, 2026', amount: '32 / 48 players', status: 'Registration open' },
+            { name: 'Kitchen Clash', detail: 'Advanced · Mixed doubles', date: 'Dec 05–06, 2026', amount: '24 / 32 players', status: 'Registration open' },
+            { name: 'Rally for a Cause', detail: 'All levels · Doubles', date: 'Nov 08, 2026', amount: '48 players', status: 'Completed' },
+        ],
+    },
+    shopInventory: {
+        title: 'Shop & inventory',
+        description: 'Keep popular gear in stock and track product performance.',
+        action: 'Add product',
+        stats: [
+            { label: 'Products', value: '48', trend: '6 categories', note: 'listed in the shop', icon: 'products' },
+            { label: 'Low stock', value: '5', trend: 'Needs restock', note: 'across 3 products', icon: 'attention' },
+            { label: 'Sales this month', value: '₱28,640', trend: '+18.6%', note: 'vs. last month', icon: 'revenue' },
+        ],
+        rows: [
+            { name: 'Selkirk Vanguard Power Air', detail: 'Paddles · SKU DPK-1042', date: 'Updated yesterday', amount: '₱12,900', status: 'In stock' },
+            { name: 'DinkZone Court Tee', detail: 'Apparel · SKU DZ-TEE-08', date: 'Updated Oct 30', amount: '₱950', status: 'Low stock' },
+            { name: 'Franklin X-40 Outdoor Balls', detail: 'Accessories · SKU FRK-0040', date: 'Updated Oct 29', amount: '₱1,450', status: 'In stock' },
+            { name: 'CourtMate Paddle Bag', detail: 'Bags · SKU CM-BAG-11', date: 'Updated Oct 27', amount: '₱3,250', status: 'Out of stock' },
+            { name: 'Overgrip 3-Pack', detail: 'Accessories · SKU DZ-GRIP-03', date: 'Updated Oct 25', amount: '₱380', status: 'In stock' },
+        ],
+    },
+    usersStaff: {
+        title: 'Users & staff',
+        description: 'See who is part of the community and your operations team.',
+        action: 'Invite a teammate',
+        stats: [
+            { label: 'Community members', value: '3,842', trend: '+16.2%', note: 'joined this month', icon: 'players' },
+            { label: 'Venue owners', value: '18', trend: '8 venues', note: 'across the platform', icon: 'venues' },
+            { label: 'Staff members', value: '32', trend: '4 roles', note: 'with active access', icon: 'staff' },
+        ],
+        rows: [
+            { name: 'Miguel Santos', detail: 'miguel.santos@email.com', date: 'Joined Oct 28, 2026', amount: 'Player', status: 'Active' },
+            { name: 'Alyssa Cruz', detail: 'alyssa.cruz@email.com', date: 'Joined Oct 27, 2026', amount: 'Venue owner', status: 'Active' },
+            { name: 'Noah Reyes', detail: 'noah.reyes@email.com', date: 'Joined Oct 25, 2026', amount: 'Player', status: 'Active' },
+            { name: 'Sofia Lim', detail: 'sofia.lim@email.com', date: 'Joined Oct 22, 2026', amount: 'Staff · Rally Point', status: 'Invited' },
+            { name: 'Ethan Garcia', detail: 'ethan.garcia@email.com', date: 'Joined Oct 19, 2026', amount: 'Staff · Dink District', status: 'Active' },
+        ],
+    },
+    reports: {
+        title: 'Reports',
+        description: 'Understand revenue, bookings, and growth across DinkZone.',
+        action: 'Export report',
+        stats: [
+            { label: 'Total revenue', value: '₱184,260', trend: '+12.8%', note: 'vs. last month', icon: 'revenue' },
+            { label: 'Completed bookings', value: '1,284', trend: '+8.4%', note: 'vs. last month', icon: 'bookings' },
+            { label: 'Repeat players', value: '62%', trend: '+3.1%', note: 'returning this month', icon: 'players' },
+            { label: 'Avg. booking value', value: '₱624', trend: '+4.2%', note: 'vs. last month', icon: 'rating' },
+        ],
+        revenue: [32, 48, 41, 63, 55, 70, 61, 82, 73, 91, 84, 100],
+        revenueLabels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        rows: [
+            { name: 'Rally Point Pickleball', detail: 'Banilad · 5 courts', date: 'Revenue share · 28%', amount: '₱42,800', status: 'Top venue' },
+            { name: 'Dink District', detail: 'Lahug · 4 courts', date: 'Revenue share · 22%', amount: '₱31,250', status: 'Growing' },
+            { name: 'Baseline Social Club', detail: 'Mabolo · 4 courts', date: 'Revenue share · 18%', amount: '₱27,100', status: 'Steady' },
+            { name: 'The Kitchen Cebu', detail: 'IT Park · 3 courts', date: 'Revenue share · 12%', amount: '₱18,400', status: 'Growing' },
+        ],
+    },
+};
+
+export const ADMIN_NAV_ITEMS = [
+    { label: 'Overview', section: 'overview', href: '/admin/overview', icon: 'overview' },
+    { label: 'Owner view', section: 'ownerView', href: '/admin/owner-view', icon: 'owner' },
+    { label: 'Bookings', section: 'bookings', href: '/admin/bookings', icon: 'bookings' },
+    { label: 'Calendar', section: 'calendar', href: '/admin/calendar', icon: 'calendar' },
+    { label: 'Venues & courts', section: 'venuesCourts', href: '/admin/venues-courts', icon: 'venues' },
+    { label: 'Tournaments', section: 'tournaments', href: '/admin/tournaments', icon: 'tournaments' },
+    { label: 'Shop & inventory', section: 'shopInventory', href: '/admin/shop-inventory', icon: 'shop' },
+    { label: 'Users & staff', section: 'usersStaff', href: '/admin/users-staff', icon: 'users' },
+    { label: 'Reports', section: 'reports', href: '/admin/reports', icon: 'reports' },
+];

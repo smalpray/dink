@@ -1,0 +1,22 @@
+### Phase 1: Admin dashboard and demo RTK Query
+
+- **Timestamp:** 2026-11-03
+- **Mode:** Agent
+- **Persona(s) Active:** 🏗️ Tech Lead, 🖥️ Frontend, 🎨 UI/UX, ⚙️ Backend, 🧪 QA
+- **Files Modified/Created:**
+  - `package.json`, `package-lock.json` — Added Redux Toolkit and React-Redux.
+  - `resources/js/app.jsx` — Wrapped the Inertia app with the Redux Provider.
+  - `resources/js/store/index.js` — Configured the Redux store and registered the admin API reducer and middleware.
+  - `resources/js/features/admin/adminApi.js` — Added RTK Query demo endpoints, section tags, and explicit unknown-section errors.
+  - `resources/js/features/admin/adminData.js` — Added preview datasets and navigation metadata for nine admin sections.
+  - `resources/js/app/admin/layout/AdminLayout.jsx`, `resources/js/app/admin/layout/AdminSidebar.jsx` — Added the responsive admin shell and section navigation.
+  - `resources/js/app/admin/pages/AdminSectionPage.jsx` — Added section metrics, revenue display, records, filtering, pagination, loading/empty/error states, and clear demo-mode feedback.
+  - `resources/js/Pages/Admin/*.jsx` — Added Inertia entry pages for Overview, Owner view, Bookings, Calendar, Venues & courts, Tournaments, Shop & inventory, Users & staff, and Reports.
+  - `resources/js/app/components/layout/navConfig.js` — Linked the existing Admin dashboard navigation item to `/admin/overview`.
+  - `routes/web.php` — Added nine authenticated admin routes.
+  - `app/Http/Middleware/EnsureAdminEmailIsVerified.php` — Enforced verification for admin routes without changing global user verification behavior.
+  - `tests/Feature/AdminPagesTest.php` — Covered guest redirects, unverified-user redirects, and all nine Inertia page responses.
+- **Issues Encountered:** The `verified` middleware did not redirect unverified users because the existing User model does not implement `MustVerifyEmail`. A route test exposed this.
+- **Resolution:** Added an admin-scoped middleware that redirects users without `email_verified_at` to the existing verification notice. No global authentication behavior was changed.
+- **QA Checklist Result:** ✅ All applicable code-level checks passed. Route tests: 3 passed, 94 assertions. Nine Inertia routes registered. PHP syntax and formatting checks passed. All 23 admin/store JavaScript files parsed; Redux mock queries returned complete datasets for all nine sections and an explicit error for an unknown section. Redux dependencies verified. Browser confirmed the admin route redirects a guest to login; authenticated visual and responsive checks remain unverified because no browser test account was provisioned. The login page surfaced an unrelated existing React warning about the `isFocused` prop on its input. Production build was not run, as it was excluded from the approved plan.
+- **Next Steps:** Connect the read-only preview pages to authorized backend APIs and add role-level admin authorization when that scope is approved.

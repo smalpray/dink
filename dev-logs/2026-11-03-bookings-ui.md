@@ -1,0 +1,98 @@
+### Phase 1: Bookings and check-in UI
+
+- **Timestamp:** 2026-11-03 20:49 +08:00
+- **Mode:** Agent
+- **Persona(s) Active:** 🏗️ Tech Lead, 🖥️ Frontend, 🎨 UI/UX, 🧪 QA
+- **Files Modified/Created:**
+  - `routes/web.php` — Added the `/bookings` Inertia route.
+  - `resources/js/Pages/Bookings.jsx` — Added the Inertia page entry point.
+  - `resources/js/app/booking/page.jsx` — Composed local sample bookings and UI state for tabs, check-in, reschedule, cancel, and empty states.
+  - `resources/js/app/booking/sections/HeaderSection.jsx` — Added the bookings heading and description.
+  - `resources/js/app/booking/sections/TabsSection.jsx` — Added Upcoming/Past tabs with live counts.
+  - `resources/js/app/booking/sections/BookCardSection.jsx` — Added responsive booking cards and actions.
+  - `resources/js/app/booking/sections/CheckInSection.jsx` — Added a clearly labeled demo pass, QR-style display, NFC explanation, and simulated gate scan.
+  - `resources/js/app/booking/sections/RecheduleSection.jsx` — Added the responsive date/time reschedule panel using the section filename already present in the project.
+  - `resources/js/app/booking/sections/CancelSection.jsx` — Added confirmation and refund details before local cancellation.
+  - `dev-logs/2026-11-03-bookings-ui.md` — Recorded implementation and QA results.
+- **Issues Encountered:** Booking section files were empty placeholders; their existing filenames and directory were kept.
+- **Resolution:** Implemented the UI within the provided sections and reused the shared layout, theme, and existing navigation entry.
+- **QA Checklist Result:** ✅ All applicable checks passed.
+  - ✅ Plain JavaScript/JSX; no TypeScript added.
+  - ✅ `web.php` route renders an Inertia page; no JSON routes or backend endpoints added.
+  - ✅ No POST/PUT endpoints, policies, resources, migrations, or services were needed.
+  - ✅ Interactions use local UI state; no RTK Query, Redux store, or backend fetches added.
+  - ✅ Existing UI section files were reused; no new `components/ui/` component was created.
+  - ✅ Inertia link is used for the empty-state “Find a court” action.
+  - ✅ Upcoming/Past counts and empty state (icon, heading, description, CTA) verified.
+  - ✅ Past tab contains three local history examples, matching the reference count.
+  - ✅ Check-in demo pass opens; simulated scan updates feedback; Escape closes the dialog.
+  - ✅ Reschedule updates the selected booking locally and confirms the new time.
+  - ✅ Cancel requires confirmation, removes only the selected booking locally, and reports feedback.
+  - ✅ Dialog focus entry, Escape dismissal, and Tab/Shift+Tab focus wrapping verified.
+  - ✅ Dark and light modes were exercised using the shared theme control; responsive check at 390px showed no horizontal overflow and the check-in dialog fit the viewport.
+  - ✅ `npm run build` passed.
+  - ✅ `php artisan route:list --path=bookings` showed the route.
+  - ✅ `composer audit --locked` reported no security advisories.
+- **Next Steps:** None for this phase; awaiting any further requested UI changes.
+
+### Phase 2: Shared customer UI components and booking spacing
+
+- **Timestamp:** 2026-11-03 21:19 +08:00
+- **Mode:** Agent
+- **Persona(s) Active:** 🏗️ Tech Lead, 🖥️ Frontend, 🎨 UI/UX, 🧪 QA
+- **Files Modified:**
+  - `resources/js/app/layout.jsx` — Pointed the legacy layout re-export to the moved shared layout.
+  - `resources/js/app/components/ui/Button.jsx` — Added DinkZone variants, focus-visible styling, ref forwarding, and standard button prop forwarding; removed the unavailable `classnames` dependency.
+  - `resources/js/app/components/ui/Badge.jsx` — Added a DinkZone brand badge variant.
+  - `resources/js/app/onboarding/sections/WelcomeSection.jsx` — Reused the shared button for the primary onboarding action.
+  - `resources/js/app/onboarding/sections/LocationPermissionSection.jsx` — Reused shared buttons for the location actions.
+  - `resources/js/app/dashboard/sections/SidebarCourtSection.jsx` — Reused shared badges for court types and booking status.
+  - `resources/js/app/shop/sections/CardListSection.jsx` — Reused shared buttons and badges for cart actions and sale labels.
+  - `resources/js/app/shop/sections/RentSection.jsx` — Reused shared button and badge components for reservations and rental status.
+  - `resources/js/app/event/sections/HeaderSection.jsx` — Reused the shared button for Rankings.
+  - `resources/js/app/event/sections/CardEventSection.jsx` — Reused shared badges for tournament labels.
+  - `resources/js/app/booking/page.jsx` — Widened and centered the content area and tightened the list’s top spacing.
+  - `resources/js/app/booking/sections/BookCardSection.jsx` — Reused shared buttons and badges; increased detail and action spacing.
+- **Issues Encountered:** The first production build exposed that the shared Button imported an unavailable `classnames` package; Vite’s running development server also returned 404 for page modules. Browser checks additionally found that the existing Courts navigation target `/courts` has no route.
+- **Resolution:** Replaced the dependency with a small class-string join. With authorization, restarted only the identified Vite process; module loading and browser checks then worked. The pre-existing `/courts` route was not changed because route changes were outside this UI-only phase.
+- **QA Checklist Result:** ✅ All applicable checks passed; existing `/courts` route gap noted separately.
+  - ✅ Plain JavaScript/JSX; no TypeScript added.
+  - ✅ No backend endpoints, JSON responses, migrations, policies, resources, or services added or changed.
+  - ✅ No Redux/RTK Query or network operations introduced.
+  - ✅ Existing customer pages reuse the moved shared `MainLayout`; legacy layout re-export now resolves to it.
+  - ✅ Shared Button/Badge components used where their semantics fit; no new UI components created. The existing Card renders an anchor and the existing Tabs uses a different pattern, so neither was forced onto non-link cards or accessible tabs.
+  - ✅ Existing customer navigation continues to use Inertia links. The pre-existing `/courts` destination currently returns 404 and remains outside this phase.
+  - ✅ Booking demo check-in, reschedule, and cancel/keep interactions verified; booking data remains local.
+  - ✅ Shop add-to-cart and local gear reservation verified; event detail open/back verified.
+  - ✅ Browser verified desktop booking-card layout and action spacing; 390px mobile checks showed no horizontal overflow on onboarding/dashboard, shop, events, or bookings.
+  - ✅ Light/dark theme toggle verified on bookings; page and card surfaces update with the theme.
+  - ✅ Dialog interactions remain keyboard-accessible by code; focus-trap behavior was verified in Phase 1 and dialog structures were unchanged in this phase.
+  - ✅ `npm run build` passed.
+- **Next Steps:** None for this phase. The missing `/courts` route is a separate follow-up.
+
+### Phase 3: Renaming Dashboard to Courts
+
+- **Timestamp:** 2026-11-03
+- **Mode:** Agent
+- **Persona(s) Active:** 🏗️ Tech Lead, ⚙️ Backend, 🖥️ Frontend, 🧪 QA
+- **Files Modified/Created:**
+  - `resources/js/app/court/page.jsx` — Renamed the feature page component to `CourtPage`.
+  - `resources/js/Pages/Courts.jsx` — Added the Inertia entry point for the Courts page.
+  - `resources/js/Pages/Dashboard.jsx` — Kept the legacy entry point resolving to the moved courts feature.
+  - `resources/js/app/onboarding/page.jsx` — Updated the onboarding completion flow to render the moved courts feature.
+  - `routes/web.php` — Added the named `/courts` Inertia route without changing the existing authenticated `/dashboard` route.
+  - `dev-logs/2026-11-03-bookings-ui.md` — Recorded this phase and its verification.
+- **Issues Encountered:** None.
+- **Resolution:** Existing customer navigation already targeted `/courts`; added the missing route and updated all affected imports.
+- **QA Checklist Result:** ✅ All applicable checks passed.
+  - ✅ Plain JavaScript/JSX; no TypeScript added.
+  - ✅ `web.php` renders the new page through Inertia; no API route or backend data behavior added.
+  - ✅ No POST/PUT endpoints, policies, resources, migrations, services, Redux, or RTK Query changes were needed.
+  - ✅ React page naming and `resources/js/Pages` entry-point structure are correct; no UI component was created.
+  - ✅ No remaining imports point to the removed `app/dashboard` directory.
+  - ✅ `php artisan route:list --path=courts` confirms the new `courts` route.
+  - ✅ Browser opened `/courts` successfully and showed the Courts page.
+  - ✅ Onboarding “Skip for now” and “Allow location” both opened the Courts UI.
+  - ✅ `/dashboard` retains its existing auth/verified middleware and redirects an unauthenticated visitor to login.
+  - ✅ `npm run build` passed; editor diagnostics reported no errors in the changed files.
+- **Next Steps:** None for this phase; awaiting any further requested changes.
